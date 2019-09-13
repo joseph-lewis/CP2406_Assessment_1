@@ -1,62 +1,29 @@
 public class Main {
 
     public static void main(String[] args) {
-        Car car_obj = new Car();
-        StraightRoad road = new StraightRoad();
-        int RoadLength = road.length;
-        int xaxis = 10;
-        int yaxis = 10;
-        road.add_road(0, 0);
-        while (car_obj.car_xpos < xaxis) {
-            System.out.printf("(%s,%s)\n", car_obj.car_xpos, car_obj.car_ypos);
-            if (car_obj.car_xpos < xtest){
-                System.out.println("On ROAD");
+        Car car_obj = new Car(0);
+        Road road_1 = new Road(0, 5, 1);
+        Road road_2 = new Road(5, 5, 1);
+        TrafficLights traffic_lights = new TrafficLights(0.3, road_1.end_xpos);
+        int road_number;
+        road_number = 0;
+        int road_position;
+        while (car_obj.car_xpos < (road_1.length + road_2.length)) {
+            String traffic_light_state = traffic_lights.lightState();
+            road_position = road_1.roadPosition(car_obj.car_xpos);
+            if (car_obj.car_xpos <= road_1.end_xpos) {
+                road_number = 1; }
+            if (car_obj.car_xpos > road_1.end_xpos) {
+                road_number = 2; }
+            System.out.printf("Car is on road %s at x-position:%s, road position:%s, light:%s\n", road_number, car_obj.car_xpos, road_position, traffic_light_state);
+            if ((car_obj.car_xpos == (road_1.end_xpos - 1)) && traffic_light_state == "red") {//check what color light is to see if it needs to stop
+            assert true;
             }
-            car_obj.drive();
+            else{
+                car_obj.drive();
+            }
         }
-    }
-}
-
-class Vehicle {
-    int length;
-    int width;
-    int xpos;
-    int ypos;
-
-}
-
-class Car extends Vehicle {
-    Vehicle vehicle = new Vehicle();
-    int car_xpos = vehicle.xpos;
-    int car_ypos = vehicle.ypos;
-    int car_length = vehicle.length;
-    int car_width = car_length/2;
-    public void drive(){
-        car_xpos += 1;
-    }
-    public void check_road() {
 
     }
 }
 
-class StraightRoad {
-    int road_xpos;
-    int road_ypos;
-    int length = 5;
-    int width = 2;
-    public void add_road(int x, int y){
-        int road_xaxis = x + length;
-        int road_yaxis = y - width;
-        return road_xaxis
-
-    }
-}
-//class Motorbike extends Vehicle {
-//    int bike_length = (Vehicle.length)/2;
-//    int bike_width = Vehcile.width
-//}
-//class Bus extends Vehicle {
-//    int bus_length = Vehicle.length * 3;
-//    int car_width = Vehcile.width
-//
-//}
