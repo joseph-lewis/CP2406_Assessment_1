@@ -1,6 +1,6 @@
 public class Car {
-    int car_length = 2; //dimensions for car
-    int car_width = car_length / 2;
+    private int car_length = 2; //dimensions for car
+    private int car_width = car_length / 2;
     int car_xpos = 0; //car c-xoordinate
 
     public Car(int car_xpos) {
